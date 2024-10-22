@@ -6,10 +6,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/flosch/pongo2/v4"
-	"your-username/alberta-class7-quiz/internal/handlers"
-	"your-username/alberta-class7-quiz/internal/repository"
-	"your-username/alberta-class7-quiz/internal/service"
-	"your-username/alberta-class7-quiz/internal/repository/sqlite"
+	"localplus/internal/handlers"
+	"localplus/internal/repository"
+	"localplus/internal/service"
 )
 
 func main() {

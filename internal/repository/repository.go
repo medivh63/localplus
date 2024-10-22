@@ -1,6 +1,6 @@
 package repository
 
-import "your-username/alberta-class7-quiz/internal/models"
+import "localplus/internal/models"
 
 type QuestionRepository interface {
     GetRandomQuestion() (*models.Question, error)

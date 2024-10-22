@@ -2,8 +2,8 @@ package handlers
 
 import (
 	"github.com/gin-gonic/gin"
-	"your-username/alberta-class7-quiz/internal/models"
-	"your-username/alberta-class7-quiz/internal/service"
+	"localplus/internal/models"
+	"localplus/internal/service"
 )
 
 type QuizHandler struct {

@@ -1,8 +1,8 @@
 package service
 
 import (
-	"your-username/alberta-class7-quiz/internal/models"
-	"your-username/alberta-class7-quiz/internal/repository"
+	"localplus/internal/models"
+	"localplus/internal/repository"
 )
 
 type QuizService struct {
