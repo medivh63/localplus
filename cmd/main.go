@@ -23,7 +23,7 @@ func main() {
 	// 初始化数据库
 	db, err := sql.Open("sqlite3", "quiz.db")
 	if err != nil {
-		log.Fatalf("Failed to open database: %v", err)
+		log.Fatal("Failed to open database: %v", err)
 	}
 	defer db.Close()
 
