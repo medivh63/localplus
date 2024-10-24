@@ -21,13 +21,13 @@ func NewQuizHandler(quizService *service.QuizService) *QuizHandler {
 }
 
 func (h *QuizHandler) Index(c *gin.Context) {
-	// 生成一个随机的quizID
 	quizID := uuid.New().String()
-	// set cookie
-	// 如果cookie存在，并且已过期则删除
+	// 如果cookie存在，并且已过期就设置新的cookie
 	if cookie, err := c.Request.Cookie("quizID"); err == nil {
 		if time.Now().After(cookie.Expires) {
-			c.SetCookie("quizID", "", -1, "/", "localplus.com", false, true)
+			c.SetCookie("quizID", quizID, -1, "/", "localplus.com", false, true)
+		} else {
+			quizID = cookie.Value
 		}
 	}
 	data := pongo2.Context{"quizID": quizID}

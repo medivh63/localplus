@@ -29,15 +29,20 @@ func (s *QuizService) GetRandomQuestion(quizID string) (*models.Question, error)
 			diffIDs = append(diffIDs, id)
 		}
 	}
-	// 从差集中随机获取一个id
-	randomID := diffIDs[rand.Intn(len(diffIDs))]
-
-	// 根据id查询数据库获取题目
-	question, err := s.repo.GetQuestionByID(randomID)
-	if err != nil {
-		return nil, err
+	if len(diffIDs) > 0 {
+		// 从差集中随机获取一个id
+		randomID := diffIDs[rand.Intn(len(diffIDs))]
+		// 根据id查询数据库获取题目
+		question, err := s.repo.GetQuestionByID(randomID)
+		if err != nil {
+			return nil, err
+		}
+		return question, nil
+	} else {
+		// 处理 diffIDs 为空的情况
+		// 例如，返回一个错误或使用默认值
+		return nil, models.ErrQuestionNotFound
 	}
-	return question, nil
 }
 
 func (s *QuizService) SaveQuizAnswer(quiz *models.Quiz) error {
