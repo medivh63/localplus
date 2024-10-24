@@ -16,7 +16,7 @@ import (
 
 func loadTemplates() map[string]*pongo2.Template {
 	templates := make(map[string]*pongo2.Template)
-	templateDir := "templates"  // 指定模板目录
+	templateDir := "templates" // 指定模板目录
 	// 遍历模板目录
 	err := filepath.Walk(templateDir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -60,11 +60,13 @@ func main() {
 		log.Fatalf("Failed to migrate database: %v", err)
 	}
 
+	// 创建repository
 	repo, err := repository.NewSQLiteRepository("/Users/medivh/local.db")
 	if err != nil {
 		log.Fatalf("can not create repository: %v", err)
 	}
-
+	
+	// 获取所有question id
 	ids, err := repo.GetAllQuestionIDs()
 	if err != nil {
 		log.Fatalf("can not get all question ids: %v", err)

@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"net/http"
-	"time"
 
 	"localplus/internal/models"
 	"localplus/internal/service"
@@ -20,15 +19,15 @@ func NewQuizHandler(quizService *service.QuizService) *QuizHandler {
 	return &QuizHandler{quizService: quizService}
 }
 
+// 首页
 func (h *QuizHandler) Index(c *gin.Context) {
 	quizID := uuid.New().String()
-	// 如果cookie存在，并且已过期就设置新的cookie
-	if cookie, err := c.Request.Cookie("quizID"); err == nil {
-		if time.Now().After(cookie.Expires) {
-			c.SetCookie("quizID", quizID, -1, "/", "localplus.com", false, true)
-		} else {
-			quizID = cookie.Value
-		}
+	cookie, err := c.Request.Cookie("quizID")
+	if err != nil || cookie == nil {
+        // 设置新的 cookie，有效期为 24 小时
+        c.SetCookie("quizID", quizID, 86400, "/", "", false, true)
+	} else {
+		quizID = cookie.Value
 	}
 	data := pongo2.Context{"quizID": quizID}
 	RenderTemplate(c, "index.html", data)
@@ -36,17 +35,16 @@ func (h *QuizHandler) Index(c *gin.Context) {
 
 func (h *QuizHandler) StartQuiz(c *gin.Context) {
 	quizID := c.Param("quizID")
-
 	question, err := h.quizService.GetRandomQuestion(quizID)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get question"})
 		return
 	}
-
-	c.JSON(http.StatusOK, gin.H{
-		"quiz_id":   quizID,
-		"question":  question,
-	})
+	data := pongo2.Context{
+		"quizID":   quizID,
+		"question": question,
+	}
+	RenderTemplate(c, "quiz.html", data)
 }
 
 func (h *QuizHandler) AnswerQuestion(c *gin.Context) {

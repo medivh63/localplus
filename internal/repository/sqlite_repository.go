@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"gorm.io/gorm"
 	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"localplus/internal/models"
 	"log"
@@ -22,10 +22,10 @@ func NewSQLiteRepository(dbPath string) (*SQLiteRepository, error) {
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
 		logger.Config{
-			SlowThreshold:             time.Second,   // 慢 SQL 阈值
-			LogLevel:                  logger.Info,   // 日志级别
-			IgnoreRecordNotFoundError: true,          // 忽略ErrRecordNotFound（记录未找到）错误
-			Colorful:                  true,          // 禁用彩色打印
+			SlowThreshold:             time.Second, // 慢 SQL 阈值
+			LogLevel:                  logger.Info, // 日志级别
+			IgnoreRecordNotFoundError: true,        // 忽略ErrRecordNotFound（记录未找到）错误
+			Colorful:                  true,        // 禁用彩色打印
 		},
 	)
 
@@ -75,8 +75,8 @@ func (r *SQLiteRepository) GetQuizResult(quizID string) ([]models.Quiz, error) {
 	return results, nil
 }
 
-// 从数据获取所有questionID
-func (r *SQLiteRepository) GetAllQuestionIDs() ([]string, error){
+// GetAllQuestionIDs 从数据获取所有questionID
+func (r *SQLiteRepository) GetAllQuestionIDs() ([]string, error) {
 	var ids []string
 	if err := r.db.Model(&models.Question{}).Select("question_id").Find(&ids).Error; err != nil {
 		return nil, err
@@ -84,7 +84,7 @@ func (r *SQLiteRepository) GetAllQuestionIDs() ([]string, error){
 	return ids, nil
 }
 
-// 根据quizID查询数据库已经答过的题目ID
+// GetAnsweredQuestionIDs 根据quizID查询数据库已经答过的题目ID
 func (r *SQLiteRepository) GetAnsweredQuestionIDs(quizID string) ([]string, error) {
 	var ids []string
 	if err := r.db.Model(&models.Quiz{}).Where("quiz_id = ?", quizID).Select("question_id").Find(&ids).Error; err != nil {

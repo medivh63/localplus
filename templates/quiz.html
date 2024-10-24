@@ -15,20 +15,20 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>测验开始</h1>
-        <div class="question">
-            <h2>{{ question.Content }}</h2>
-            <ul class="options">
-                {% for option in question.Options %}
-                <li>
-                    <input type="radio" name="answer" id="option{{ forloop.Counter }}" value="{{ option }}">
-                    <label for="option{{ forloop.Counter }}">{{ option }}</label>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <a href="/quiz/next" class="btn">下一题</a>
+<div class="container">
+    <h1>测验开始</h1>
+    <div class="question">
+        <h2>{{ question.Content }}</h2>
+        <ul class="options">
+            {% for option in question.Options %}
+            <li>
+                <input type="radio" name="answer" id="option{{ forloop.Counter }}" value="{{ option.Content }}">
+                <label for="option{{ forloop.Counter }}">{{ option.Content }}</label>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
+    <a href="/quiz/next" class="btn">下一题</a>
+</div>
 </body>
 </html>

@@ -17,12 +17,14 @@ func NewQuizService(repo *repository.SQLiteRepository) *QuizService {
 }
 
 func (s *QuizService) GetRandomQuestion(quizID string) (*models.Question, error) {
+	// 获取已回答的题目id
 	answeredIDs, err := s.repo.GetAnsweredQuestionIDs(quizID)
 	if err != nil {
 		return nil, err
 	}
+	// 获取所有题目id
 	allQuestionIDs := models.GetAllQuestionIDs()
-    // 取两个集合的差集
+	// 取两个集合的差集
 	diffIDs := make([]string, 0)
 	for _, id := range allQuestionIDs {
 		if !slices.Contains(answeredIDs, id) {

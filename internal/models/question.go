@@ -1,16 +1,25 @@
 package models
 
-import "time"
+import (
+	"gorm.io/gorm"
+)
 
 // 添加全局变量
 var allQuestionIDs []string
 
+type Option struct {
+	Content   string `json:"content"`
+	IsCorrect bool   `json:"is_correct" gorm:"type:numeric"`
+}
+
 type Question struct {
-	QuestionID string `json:"question_id" gorm:"primaryKey"`
-	Content    string `json:"content"`
-	Options    string `json:"options"`
-	CreatedAt  time.Time `json:"created_at"`
-	DeletedAt  time.Time `json:"deleted_at"`
+	gorm.Model
+	ID         uint       `json:"id" gorm:"primaryKey;autoIncrement"`
+	QuestionID string    `json:"question_id"`
+	Content    string    `json:"content"`
+	Options    []Option  `json:"options" gorm:"type:json"`
+	Type       string    `json:"type"`
+	Images     string    `json:"image"`
 }
 
 // TableName 指定表名
