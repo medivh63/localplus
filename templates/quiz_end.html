@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测验结束</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { color: #333; }
+        .result { background: #f4f4f4; padding: 20px; margin-bottom: 20px; border-radius: 5px; }
+        .btn { display: inline-block; background: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>测验结束</h1>
+        <div class="result">
+            <h2>您的得分：{{ score }} / {{ total_questions }}</h2>
+            <p>正确率：{{ percentage }}%</p>
+        </div>
+        <a href="/" class="btn">返回首页</a>
+    </div>
+</body>
+</html>

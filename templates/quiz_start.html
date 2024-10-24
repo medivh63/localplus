@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开始测验</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { color: #333; }
+        .question { background: #f4f4f4; padding: 20px; margin-bottom: 20px; border-radius: 5px; }
+        .options { list-style-type: none; padding: 0; }
+        .options li { margin-bottom: 10px; }
+        .btn { display: inline-block; background: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>测验开始</h1>
+        <div class="question">
+            <h2>{{ question.Content }}</h2>
+            <ul class="options">
+                {% for option in question.Options %}
+                <li>
+                    <input type="radio" name="answer" id="option{{ forloop.Counter }}" value="{{ option }}">
+                    <label for="option{{ forloop.Counter }}">{{ option }}</label>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="/quiz/next" class="btn">下一题</a>
+    </div>
+</body>
+</html>

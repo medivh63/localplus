@@ -2,11 +2,14 @@ package handlers
 
 import (
 	"net/http"
+	"time"
 
-	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
 	"localplus/internal/models"
 	"localplus/internal/service"
+
+	"github.com/flosch/pongo2/v6"
+	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
 
 type QuizHandler struct {
@@ -17,14 +20,28 @@ func NewQuizHandler(quizService *service.QuizService) *QuizHandler {
 	return &QuizHandler{quizService: quizService}
 }
 
+func (h *QuizHandler) Index(c *gin.Context) {
+	// 生成一个随机的quizID
+	quizID := uuid.New().String()
+	// set cookie
+	// 如果cookie存在，并且已过期则删除
+	if cookie, err := c.Request.Cookie("quizID"); err == nil {
+		if time.Now().After(cookie.Expires) {
+			c.SetCookie("quizID", "", -1, "/", "localplus.com", false, true)
+		}
+	}
+	data := pongo2.Context{"quizID": quizID}
+	RenderTemplate(c, "index.html", data)
+}
+
 func (h *QuizHandler) StartQuiz(c *gin.Context) {
-	question, err := h.quizService.GetRandomQuestion()
+	quizID := c.Param("quizID")
+
+	question, err := h.quizService.GetRandomQuestion(quizID)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get question"})
 		return
 	}
-
-	quizID := uuid.New().String()
 
 	c.JSON(http.StatusOK, gin.H{
 		"quiz_id":   quizID,

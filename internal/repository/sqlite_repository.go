@@ -47,6 +47,14 @@ func NewSQLiteRepository(dbPath string) (*SQLiteRepository, error) {
 	return &SQLiteRepository{db: db}, nil
 }
 
+func (r *SQLiteRepository) GetQuestionByID(id string) (*models.Question, error) {
+	var q models.Question
+	if err := r.db.Where("question_id = ?", id).First(&q).Error; err != nil {
+		return nil, err
+	}
+	return &q, nil
+}
+
 func (r *SQLiteRepository) GetRandomQuestion() (*models.Question, error) {
 	var q models.Question
 	if err := r.db.Order("RANDOM()").First(&q).Error; err != nil {
@@ -65,4 +73,22 @@ func (r *SQLiteRepository) GetQuizResult(quizID string) ([]models.Quiz, error) {
 		return nil, err
 	}
 	return results, nil
+}
+
+// 从数据获取所有questionID
+func (r *SQLiteRepository) GetAllQuestionIDs() ([]string, error){
+	var ids []string
+	if err := r.db.Model(&models.Question{}).Select("question_id").Find(&ids).Error; err != nil {
+		return nil, err
+	}
+	return ids, nil
+}
+
+// 根据quizID查询数据库已经答过的题目ID
+func (r *SQLiteRepository) GetAnsweredQuestionIDs(quizID string) ([]string, error) {
+	var ids []string
+	if err := r.db.Model(&models.Quiz{}).Where("quiz_id = ?", quizID).Select("question_id").Find(&ids).Error; err != nil {
+		return nil, err
+	}
+	return ids, nil
 }

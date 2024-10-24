@@ -1,10 +1,14 @@
 module localplus
 
-go 1.20
+go 1.22.0
+
+toolchain go1.23.2
 
 require (
+	github.com/flosch/pongo2/v6 v6.0.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/google/uuid v1.3.0
+	golang.org/x/exp v0.0.0-20241009180824-f66d83c29e7c
 	gorm.io/driver/sqlite v1.5.2
 	gorm.io/gorm v1.25.2
 )
