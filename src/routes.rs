@@ -6,5 +6,5 @@ use crate::AppState;
 
 /// class 7 routes
 pub(crate) fn driving_quiz_routes() -> Router<AppState> {
-    Router::new().route("/class7", get(index))
+    Router::new().route("/", get(index))
 }

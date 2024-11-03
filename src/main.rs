@@ -1,7 +1,5 @@
-use std::sync::Arc;
-
 use axum::Router;
-use sqlx::SqlitePool;
+use config::AppState;
 use tower_cookies::CookieManagerLayer;
 use tower_http::trace::TraceLayer;
 #[macro_use]
@@ -18,8 +16,10 @@ async fn main() {
     config::init_tracing();
     // 初始化数据库
     let pool = config::init_database().await.unwrap();
+    // 查询所有题目id
+    let quiz_ids = models::get_all_question_ids(&pool).await.unwrap();
     // 初始化应用状态
-    let state = AppState::new(pool, Vec::new());
+    let state = AppState::new(pool, quiz_ids);
     // 启动服务器
     let app = Router::new()
         .nest("/class7", routes::driving_quiz_routes())
@@ -27,32 +27,12 @@ async fn main() {
         .layer(CookieManagerLayer::new())
         .layer(TraceLayer::new_for_http())
         .with_state(state);
-    // run our app with hyper, listening globally on port 3000
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
+    // run our app with hyper, listening globally on port
+    let port = std::env::var("SERVER_PORT").unwrap_or_else(|_| "3000".to_string());
+    let listener = tokio::net::TcpListener::bind(format!("0.0.0.0:{}", port))
+        .await
+        .unwrap();
     tracing::info!("Server running on: {}", listener.local_addr().unwrap());
+
     axum::serve(listener, app).await.unwrap()
-}
-
-#[derive(Clone)]
-struct AppState {
-    pool: Arc<SqlitePool>,
-    quiz_ids: Arc<Vec<String>>,
-}
-
-impl AppState {
-    pub fn new(pool: SqlitePool, quiz_ids: Vec<String>) -> Self {
-        Self {
-            pool: Arc::new(pool),
-            quiz_ids: Arc::new(quiz_ids),
-        }
-    }
-
-    // 只提供getter方法
-    pub fn pool(&self) -> &SqlitePool {
-        &self.pool
-    }
-
-    pub fn quiz_ids(&self) -> &Vec<String> {
-        &self.quiz_ids
-    }
 }

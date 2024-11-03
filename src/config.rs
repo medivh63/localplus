@@ -1,3 +1,5 @@
+use std::sync::Arc;
+
 use sqlx::{pool::PoolOptions, Error, SqlitePool};
 use tera::Tera;
 
@@ -13,6 +15,7 @@ lazy_static! {
             }
         };
         tera.autoescape_on(vec![".html"]);
+        tracing::info!("init tera success {}", tera.templates.len());
         tera
     };
 }
@@ -20,7 +23,7 @@ lazy_static! {
 /// 初始化 tracing
 pub fn init_tracing() {
     tracing_subscriber::fmt()
-        .with_max_level(tracing::Level::TRACE)
+        .with_max_level(tracing::Level::INFO)
         .with_file(true)
         .init();
 }
@@ -34,4 +37,36 @@ pub async fn init_database() -> Result<SqlitePool, Error> {
         .await
         .expect("db connect error");
     Ok(pool)
+}
+
+// 全局状态
+pub struct AppState {
+    pool: Arc<SqlitePool>,
+    quiz_ids: Arc<Vec<String>>,
+}
+
+impl Clone for AppState {
+    fn clone(&self) -> Self {
+        Self {
+            pool: Arc::clone(&self.pool),
+            quiz_ids: Arc::clone(&self.quiz_ids),
+        }
+    }
+}
+
+impl AppState {
+    pub fn new(pool: SqlitePool, quiz_ids: Vec<String>) -> Self {
+        Self {
+            pool: Arc::new(pool),
+            quiz_ids: Arc::new(quiz_ids),
+        }
+    }
+
+    pub fn pool(&self) -> &SqlitePool {
+        &self.pool
+    }
+
+    pub fn quiz_ids(&self) -> &Vec<String> {
+        &self.quiz_ids
+    }
 }
