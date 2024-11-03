@@ -1,17 +1,20 @@
 use sqlx::{pool::PoolOptions, Error, SqlitePool};
 use tera::Tera;
 
-// 初始化tera模版引擎
-pub fn init_tera() -> tera::Tera {
-    let mut tera = match Tera::new("templates/**/*.html") {
-        Ok(t) => t,
-        Err(e) => {
-            tracing::error!("Parsing templates error(s): {}", e);
-            Tera::default()
-        }
+// 全局 Tera 实例
+lazy_static! {
+    pub static ref TEMPLATES: Tera = {
+        tracing::info!("init tera ...");
+        let mut tera = match Tera::new("templates/**/*.html") {
+            Ok(t) => t,
+            Err(e) => {
+                tracing::error!("init tera error: {}", e);
+                Tera::default()
+            }
+        };
+        tera.autoescape_on(vec![".html"]);
+        tera
     };
-    tera.autoescape_on(vec![".html"]);
-    tera
 }
 
 /// 初始化 tracing
