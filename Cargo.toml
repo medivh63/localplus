@@ -13,7 +13,7 @@ dotenv = "0.15"
 uuid = { version = "1.10", features = ["serde", "v4"] }
 chrono = { version = "0.4", features = ["serde"] }
 axum = {version = "0.7",features = ["json"] }
-sqlx = { version = "0.8", features = ["sqlite", "macros", "runtime-tokio"] }
+sqlx = { version = "0.8", features = ["sqlite", "macros", "runtime-tokio", "chrono"] }
 tera = { version = "1.20"}
 lazy_static = {version = "1"}
 captcha = "0.0.9"

@@ -1,26 +1,34 @@
-use chrono::{DateTime, Utc};
+use chrono::NaiveDateTime;
 use serde::{Deserialize, Serialize};
-use sqlx::{Error, SqlitePool};
 
 #[derive(sqlx::FromRow, Debug, Deserialize, Serialize)]
-struct Quiz {
-    id: u32,
-    quiz_id: String,
-    question_id: String,
-    is_correct: i64,
-    created_at: DateTime<Utc>,
+pub struct Quiz {
+    pub id: Option<i64>,
+    pub quiz_id: String,
+    pub question_id: String,
+    pub is_correct: bool,
+    pub created_at: NaiveDateTime,
 }
 
 #[derive(sqlx::FromRow, Debug, Deserialize, Serialize)]
-struct Question {
-    id: String,
-    content: Option<String>,
-    images: Option<String>,
-    options: String,
+pub struct Question {
+    pub id: Option<i64>,
+    pub question_id: String,
+    pub content: Option<String>,
+    pub question_type: i64,
+    pub images: Option<String>,
+    pub options: String,
+    pub created_at: NaiveDateTime,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
-struct QuestionOption {
-    content: String,
-    is_correct: bool,
+pub struct QuestionOption {
+    pub content: String,
+    pub is_correct: bool,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+pub struct Answer {
+    pub question_id: String,
+    pub is_correct: bool,
 }

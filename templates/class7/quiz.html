@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测验问题</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .option {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .option.correct {
+            background-color: #e7f6e7;
+            border-color: #28a745;
+        }
+        .option.incorrect {
+            background-color: #fce8e8;
+            border-color: #dc3545;
+        }
+        .option.correct::after {
+            content: '✓';
+            color: #28a745;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .option.incorrect::after {
+            content: '✗';
+            color: #dc3545;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .option.disabled {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="question">
+        <h2>{{ question.content }}</h2>
+    </div>
+    
+    <div class="options">
+        {% for option in options %}
+        <div class="option" data-correct="{{ option.is_correct }}">
+            {{ option.content }}
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', async function() {
+                // 防止重复点击
+                if (document.querySelector('.option.disabled')) {
+                    return;
+                }
+                
+                const isCorrect = this.dataset.correct === 'true';
+                const questionId = '{{ question.question_id }}'; // 假设模板中有 question 对象
+                const quizId = '{{ quiz_id }}'; // 假设模板中有 quiz_id
+                
+                try {
+                    const response = await fetch(`/class7/${quizId}/answer`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            question_id: questionId,
+                            is_correct: isCorrect
+                        })
+                    });
+                    
+                    // 禁用所有选项
+                    document.querySelectorAll('.option').forEach(opt => {
+                        opt.classList.remove('correct', 'incorrect');
+                        opt.classList.add('disabled');
+                        opt.style.pointerEvents = 'none';
+                    });
+                    
+                    // 添加正确/错误样式
+                    this.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    
+                    // 根据答案正确与否设置不同的刷新延时
+                    const delay = isCorrect ? 1000 : 2000;
+                    setTimeout(() => {
+                        location.reload();
+                    }, delay);
+                    
+                } catch (error) {
+                    console.error('提交答案失败:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
