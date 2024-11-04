@@ -4,57 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>测验问题</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .question {
-            margin-bottom: 20px;
-        }
-        .options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-        .option {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        .option.correct {
-            background-color: #e7f6e7;
-            border-color: #28a745;
-        }
-        .option.incorrect {
-            background-color: #fce8e8;
-            border-color: #dc3545;
-        }
-        .option.correct::after {
-            content: '✓';
-            color: #28a745;
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        .option.incorrect::after {
-            content: '✗';
-            color: #dc3545;
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        .option.disabled {
-            pointer-events: none;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/main.css">
 </head>
 <body>
     <div class="question">

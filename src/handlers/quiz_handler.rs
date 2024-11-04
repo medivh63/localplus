@@ -112,14 +112,11 @@ pub async fn answer(
         created_at: chrono::Local::now().naive_utc(),
     };
     models::insert_quiz(state.pool(), &quiz).await.unwrap();
-    (StatusCode::OK, "ok")
+    (StatusCode::OK, "success")
 }
 
 /// quiz 重置测验
 pub async fn reset_quiz(cookies: Cookies) -> impl IntoResponse {
     cookies.remove(Cookie::new("quiz_id", ""));
-    (
-        StatusCode::FOUND,
-        [("Location", "/class7")],
-    )
+    (StatusCode::FOUND, [("Location", "/class7")])
 }

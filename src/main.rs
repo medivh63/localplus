@@ -1,7 +1,9 @@
-use axum::Router;
+use std::path::PathBuf;
+
+use axum::{routing::get_service, Router};
 use config::AppState;
 use tower_cookies::CookieManagerLayer;
-use tower_http::trace::TraceLayer;
+use tower_http::{services::ServeDir, trace::TraceLayer};
 #[macro_use]
 extern crate lazy_static;
 
@@ -23,6 +25,11 @@ async fn main() {
     // 启动服务器
     let app = Router::new()
         .nest("/class7", routes::driving_quiz_routes())
+        // 将这行放在其他路由之前，以避免路由冲突
+        .nest_service(
+            "/static",
+            get_service(ServeDir::new(PathBuf::from("static"))),
+        )
         .fallback(handlers::fallback)
         .layer(CookieManagerLayer::new())
         .layer(TraceLayer::new_for_http())
