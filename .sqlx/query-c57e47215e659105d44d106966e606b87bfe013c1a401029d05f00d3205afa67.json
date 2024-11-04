@@ -1,0 +1,44 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT id, quiz_id, question_id, is_correct as \"is_correct: bool\", created_at FROM quiz WHERE quiz_id = ?",
+  "describe": {
+    "columns": [
+      {
+        "name": "id",
+        "ordinal": 0,
+        "type_info": "Integer"
+      },
+      {
+        "name": "quiz_id",
+        "ordinal": 1,
+        "type_info": "Text"
+      },
+      {
+        "name": "question_id",
+        "ordinal": 2,
+        "type_info": "Text"
+      },
+      {
+        "name": "is_correct: bool",
+        "ordinal": 3,
+        "type_info": "Null"
+      },
+      {
+        "name": "created_at",
+        "ordinal": 4,
+        "type_info": "Datetime"
+      }
+    ],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "c57e47215e659105d44d106966e606b87bfe013c1a401029d05f00d3205afa67"
+}
