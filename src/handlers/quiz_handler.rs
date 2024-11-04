@@ -4,10 +4,9 @@ use axum::{
     response::{AppendHeaders, Html, IntoResponse},
     Json,
 };
-use chrono::Duration;
 use rand::seq::SliceRandom;
 use tera::Context;
-use tower_cookies::{cookie, Cookie, Cookies};
+use tower_cookies::{Cookie, Cookies};
 use uuid::Uuid;
 
 use crate::{
