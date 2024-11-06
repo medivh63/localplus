@@ -23,12 +23,14 @@ RUN apt-get update && apt-get install -y libsqlite3-0 && rm -rf /var/lib/apt/lis
 
 WORKDIR /app
 
+# 打印usr/src/app/目录
+RUN ls -la /usr/src/app/
 # 从构建阶段复制编译好的二进制文件
 COPY --from=builder /usr/src/app/target/release/localplus .
 # 复制templates
 COPY --from=builder /usr/src/app/templates /app/templates
 # 复制static
-COPY --from=builder /usr/src/app/static/main.css /app/static/main.css
+COPY --from=builder /usr/src/app/static /app/static
 
 # 创建一个目录用于挂载SQLite数据库
 RUN mkdir /data
