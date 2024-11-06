@@ -30,8 +30,16 @@ WORKDIR /app
 COPY --from=builder /usr/src/app/target/release/localplus .
 # 复制templates
 COPY --from=builder /usr/src/app/templates /app/templates
+
+RUN mkdir -p /app/static
+
 # 复制static
-COPY --from=builder /usr/src/app/static /app/static
+COPY --from=builder /usr/src/app/static/main.css /app/static/
+
+RUN ls -la /app/static && \
+    pwd && \
+    whoami && \
+    stat /app/static/main.css
 
 # 创建一个目录用于挂载SQLite数据库
 RUN mkdir /data
