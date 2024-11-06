@@ -15,6 +15,9 @@ ENV SQLX_OFFLINE=true
 # 构建项目
 RUN cargo build --release
 
+# 打印usr/src/app/目录
+RUN ls -la /usr/src/app/
+
 # 第二阶段: 运行阶段
 FROM ubuntu:22.04
 
@@ -23,8 +26,6 @@ RUN apt-get update && apt-get install -y libsqlite3-0 && rm -rf /var/lib/apt/lis
 
 WORKDIR /app
 
-# 打印usr/src/app/目录
-RUN ls -la /usr/src/app/
 # 从构建阶段复制编译好的二进制文件
 COPY --from=builder /usr/src/app/target/release/localplus .
 # 复制templates
