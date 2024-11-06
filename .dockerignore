@@ -1,0 +1,11 @@
+target/
+.git/
+.env
+Dockerfile
+.dockerignore
+README.md
+*.md
+.gitignore
+.idea/
+.vscode/
+# 确保没有 static/ 或 templates/ 
