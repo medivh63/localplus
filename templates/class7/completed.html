@@ -7,8 +7,30 @@
     <link rel="stylesheet" href="/static/main.css">
 </head>
 <body>
+    <!-- GitHub 风格的导航栏 -->
+    <header class="nav-header">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">Calgary01</a>
+            <nav class="nav-links">
+                <a href="/class7" class="nav-link active">驾考</a>
+                <a href="#" class="nav-link">找工作 🔥</a>
+            </nav>
+        </div>
+    </header>
     <div class="completion-card">
-        <h1 class="completion-header">🎉 测验完成！</h1>
+        <h1 class="completion-header">
+            🎉 测验完成！
+            <span class="completion-accuracy">
+                正确率：
+                {% if answered_count > 0 %}
+                    {% set correct_count = answered_count - wrong_count %}
+                    {% set accuracy = correct_count * 100 / answered_count %}
+                    {{ accuracy | round(precision=2) }}%
+                {% else %}
+                    0%
+                {% endif %}
+            </span>
+        </h1>
         
         <div class="stats">
             <div class="stat-item">
@@ -23,18 +45,6 @@
                 <div class="stat-label">错误题数</div>
                 <div class="stat-value">{{ wrong_count }}</div>
             </div>
-        </div>
-
-        <div class="accuracy">
-            正确率：<span class="accuracy-value">
-                {% if answered_count > 0 %}
-                    {% set correct_count = answered_count - wrong_count %}
-                    {% set accuracy = correct_count * 100 / answered_count %}
-                    {{ accuracy | round(precision=2) }}%
-                {% else %}
-                    0%
-                {% endif %}
-            </span>
         </div>
 
         <a href="/class7/reset" class="restart-btn">重新开始测验</a>

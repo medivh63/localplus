@@ -7,8 +7,18 @@
     <link rel="stylesheet" href="/static/main.css">
 </head>
 <body>
+    <header class="nav-header">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">Calgary01</a>
+            <nav class="nav-links">
+                <a href="/class7" class="nav-link active">驾考</a>
+                <a href="#" class="nav-link">找工作 🔥</a>
+            </nav>
+        </div>
+    </header>
+
     <div class="question">
-        <h2>{{ question.content }}</h2>
+        <h2 class="question-text">{{ question.content }}</h2>
     </div>
     
     <div class="options">
@@ -19,7 +29,19 @@
         {% endfor %}
     </div>
 
+    <!-- 修改重新开始按钮 -->
+    <div class="restart-container">
+        <button class="restart-button" onclick="restartQuiz()">
+            重新开始 ({{ answered_count }}/{{ total_count }})
+        </button>
+    </div>
+
     <script>
+        // 添加重新开始函数
+        function restartQuiz() {
+            window.location.href = '/class7/reset';
+        }
+
         document.querySelectorAll('.option').forEach(option => {
             option.addEventListener('click', async function() {
                 // 防止重复点击

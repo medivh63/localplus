@@ -15,9 +15,6 @@ ENV SQLX_OFFLINE=true
 # 构建项目
 RUN cargo build --release
 
-# 打印static目录
-RUN ls -la /usr/src/app/static/
-
 # 第二阶段: 运行阶段
 FROM ubuntu:22.04
 
@@ -30,16 +27,8 @@ WORKDIR /app
 COPY --from=builder /usr/src/app/target/release/localplus .
 # 复制templates
 COPY --from=builder /usr/src/app/templates /app/templates
-
-RUN mkdir -p /app/static
-
 # 复制static
 COPY --from=builder /usr/src/app/static/main.css /app/static/main.css
-
-RUN ls -la /app/static && \
-    pwd && \
-    whoami && \
-    stat /app/static/main.css
 
 # 创建一个目录用于挂载SQLite数据库
 RUN mkdir /data

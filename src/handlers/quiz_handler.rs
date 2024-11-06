@@ -55,15 +55,15 @@ pub async fn quiz(State(state): State<AppState>, cookies: Cookies) -> impl IntoR
         .iter()
         .map(|q| q.question_id.clone())
         .collect::<Vec<_>>();
+    // 统计回答错误的题目数量
+    let wrong_count = answered_questions.iter().filter(|q| !q.is_correct).count();
+    // 总题目数量
+    context.insert("total_count", &state.quiz_ids().len());
+    // 已回答的题目数量
+    context.insert("answered_count", &answered_questions.len());
+    // 回答错误的题目数量
+    context.insert("wrong_count", &wrong_count);
     if answered_question_ids.len() == state.quiz_ids().len() {
-        // 统计回答错误的题目数量
-        let wrong_count = answered_questions.iter().filter(|q| !q.is_correct).count();
-        // 总题目数量
-        context.insert("total_count", &state.quiz_ids().len());
-        // 已回答的题目数量
-        context.insert("answered_count", &answered_questions.len());
-        // 回答错误的题目数量
-        context.insert("wrong_count", &wrong_count);
         // 渲染页面
         return Html(TEMPLATES.render("class7/completed.html", &context).unwrap());
     }
