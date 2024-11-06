@@ -1,55 +1,42 @@
-name: build
+name: Build and Deploy to Server
 
 on:
   push:
-    branches:
-      - master
-    tags:
-      - v*
-  pull_request:
-    branches:
-      - master
-
-permissions:
-  contents: write
+    branches: [ main ]  # 当main分支有推送时触发
 
 jobs:
-  build-rust:
-    strategy:
-      matrix:
-        platform: [ubuntu-latest]
-    runs-on: ${{ matrix.platform }}
+  build-and-deploy:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          submodules: recursive
-      - name: Install Rust
-        run: rustup toolchain install stable --component llvm-tools-preview
-      - name: Install cargo-llvm-cov
-        uses: taiki-e/install-action@cargo-llvm-cov
-      - name: install nextest
-        uses: taiki-e/install-action@nextest
-      - uses: Swatinem/rust-cache@v2
-      - name: Check code format
-        run: cargo fmt -- --check
-      - name: Check the package for errors
-        run: cargo check --all
-      - name: Lint rust sources
-        run: cargo clippy --all-targets --all-features --tests --benches -- -D warnings
-      - name: Execute rust tests
-        run: cargo nextest run --all-features
-      - name: Generate a changelog
-        uses: orhun/git-cliff-action@v2
-        id: git-cliff
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          config: cliff.toml
-          args: -vv --latest --strip header
-        env:
-          OUTPUT: CHANGES.md
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          body: ${{ steps.git-cliff.outputs.content }}
+    - uses: actions/checkout@v2
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        file: ./Dockerfile
+        platforms: linux/amd64,linux/arm64,linux/arm/v7
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/class7exam:latest
+
+    - name: Deploy to server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USERNAME }}
+        password: ${{ secrets.SERVER_PASSWORD }}
+        script: |
+          echo "Connected to server"
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/class7test:latest
+          docker stop app || true
+          docker rm app || true
+          docker run -d --name app -p 3000:3000 -v /usr/local/local.db:/data/local.db  ${{ secrets.DOCKERHUB_USERNAME }}/class7exam:latest

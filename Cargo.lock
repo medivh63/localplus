@@ -1097,6 +1097,29 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "78b3ae25bc7c8c38cec158d1f2757ee79e9b3740fbc7ccf0e59e4b08d793fa89"
 
 [[package]]
+name = "localplus"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "captcha",
+ "chrono",
+ "config",
+ "dotenv",
+ "lazy_static",
+ "rand",
+ "serde",
+ "serde_json",
+ "sqlx",
+ "tera",
+ "tokio",
+ "tower-cookies",
+ "tower-http",
+ "tracing",
+ "tracing-subscriber",
+ "uuid",
+]
+
+[[package]]
 name = "lock_api"
 version = "0.4.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2139,29 +2162,6 @@ dependencies = [
  "once_cell",
  "rustix",
  "windows-sys 0.59.0",
-]
-
-[[package]]
-name = "template"
-version = "0.1.0"
-dependencies = [
- "axum",
- "captcha",
- "chrono",
- "config",
- "dotenv",
- "lazy_static",
- "rand",
- "serde",
- "serde_json",
- "sqlx",
- "tera",
- "tokio",
- "tower-cookies",
- "tower-http",
- "tracing",
- "tracing-subscriber",
- "uuid",
 ]
 
 [[package]]
