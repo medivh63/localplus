@@ -15,8 +15,8 @@ ENV SQLX_OFFLINE=true
 # 构建项目
 RUN cargo build --release
 
-# 打印usr/src/app/目录
-RUN ls -la /usr/src/app/
+# 打印static目录
+RUN ls -la /usr/src/app/static/
 
 # 第二阶段: 运行阶段
 FROM ubuntu:22.04
