@@ -34,7 +34,7 @@ COPY --from=builder /usr/src/app/templates /app/templates
 RUN mkdir -p /app/static
 
 # 复制static
-COPY --from=builder /usr/src/app/static/main.css /app/static/
+COPY --from=builder /usr/src/app/static/main.css /app/static/main.css
 
 RUN ls -la /app/static && \
     pwd && \

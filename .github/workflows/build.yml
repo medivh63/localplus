@@ -39,4 +39,4 @@ jobs:
           docker pull ${{ secrets.DOCKERHUB_USERNAME }}/localplus:latest
           docker stop app || true
           docker rm app || true
-          docker run -d --name app -p 3000:3000 -v /usr/local/local.db:/data/local.db -v /usr/local/static:/app/static ${{ secrets.DOCKERHUB_USERNAME }}/localplus:latest
+          docker run -d --name app -p 3000:3000 -v /usr/local/local.db:/data/local.db ${{ secrets.DOCKERHUB_USERNAME }}/localplus:latest
