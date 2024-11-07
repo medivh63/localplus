@@ -25,6 +25,14 @@
         </div>
         {% endif %}
     </div>
+    
+    <div class="options">
+        {% for option in options %}
+        <div class="option" data-correct="{{ option.is_correct }}">
+            {{ option.content }}
+        </div>
+        {% endfor %}
+    </div>
 
     <!-- 修改重新开始按钮和添加下一题按钮 -->
     <div class="restart-container">
@@ -35,14 +43,6 @@
         <button class="next-button" onclick="nextQuestion()">
             下一题
         </button>
-    </div>
-    
-    <div class="options">
-        {% for option in options %}
-        <div class="option" data-correct="{{ option.is_correct }}">
-            {{ option.content }}
-        </div>
-        {% endfor %}
     </div>
 
     <script>
