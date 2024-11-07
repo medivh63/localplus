@@ -116,7 +116,7 @@ body {
     border: 1px solid var(--color-border-default);
     border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
     background-color: var(--color-canvas-default);
     transition: border-color 0.2s ease;
 }
@@ -399,4 +399,48 @@ body {
     display: flex;
     align-items: center;
     gap: 4px;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 2rem;  /* 设置两个div之间的间距 */
+    margin: 2rem 0;
+}
+
+.rules, .info {
+    flex: 1;  /* 让两个div平均分配空间 */
+    padding: 1.5rem;
+    background-color: #f8f9fa;  /* 可选：添加背景色 */
+    border-radius: 8px;         /* 可选：添加圆角 */
+}
+
+/* 在小屏幕上改为垂直排列 */
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+}
+
+.button-container {
+    text-align: center;
+    margin: 24px 0;
+}
+
+/* 可选：如果想让按钮更突出，可以调整按钮样式 */
+.start-btn {
+    background-color: #4CAF50;
+    min-width: 200px;  /* 设置最小宽度使按钮更明显 */
+    padding: 12px 24px;  /* 增加内边距使按钮更大 */
+}
+
+.question-image {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.question-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
