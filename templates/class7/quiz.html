@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>测验问题</title>
+    <title>Quiz</title>
     <link rel="stylesheet" href="/static/main.css">
 </head>
 <body>
@@ -39,6 +39,7 @@
         <button class="restart-button" onclick="restartQuiz()">
             重新开始 ({{ answered_count }}/{{ total_count }})
         </button>
+        <span style="color: brown;">错误: {{ wrong_count }}</span>
     </div>
 
     <script>
