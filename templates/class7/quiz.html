@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <link rel="stylesheet" href="/static/main.css">
 </head>
+
 <body>
     <header class="nav-header">
         <div class="nav-container">
@@ -25,7 +27,20 @@
         </div>
         {% endif %}
     </div>
-    
+
+
+    <div class="restart-container">
+        <a href="/class7/reset" class="restart-link">
+            <svg class="restart-icon" viewBox="0 0 24 24" width="16" height="16">
+                <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+            </svg>
+            重新开始 ({{ answered_count }}/{{ total_count }})
+        </a>
+        <button class="next-button" onclick="nextQuestion()">
+            下一题
+        </button>
+    </div>
+
     <div class="options">
         {% for option in options %}
         <div class="option" data-correct="{{ option.is_correct }}">
@@ -34,34 +49,22 @@
         {% endfor %}
     </div>
 
-    <!-- 修改重新开始按钮和添加下一题按 -->
-    <div class="restart-container">
-        <a href="/class7/reset">
-            重新开始 ({{ answered_count }}/{{ total_count }})
-        </a>
-        <span style="color: brown;">错误: {{ wrong_count }}</span>
-        <button class="next-button" onclick="nextQuestion()">
-            下一题
-        </button>
-    </div>
 
     <script>
-        // 添加下一题函数
         function nextQuestion() {
             location.reload();
         }
 
         document.querySelectorAll('.option').forEach(option => {
-            option.addEventListener('click', async function() {
-                // 防止重复点击
+            option.addEventListener('click', async function () {
                 if (document.querySelector('.option.disabled')) {
                     return;
                 }
-                
+
                 const isCorrect = this.dataset.correct === 'true';
-                const questionId = '{{ question.question_id }}'; // 假设模板中有 question 对象
-                const quizId = '{{ quiz_id }}'; // 假设模板中有 quiz_id
-                
+                const questionId = '{{ question.question_id }}';
+                const quizId = '{{ quiz_id }}';
+
                 try {
                     const response = await fetch(`/class7/${quizId}/answer`, {
                         method: 'POST',
@@ -73,23 +76,20 @@
                             is_correct: isCorrect
                         })
                     });
-                    
-                    // 禁用所有选项
+
                     document.querySelectorAll('.option').forEach(opt => {
                         opt.classList.remove('correct', 'incorrect');
                         opt.classList.add('disabled');
                         opt.style.pointerEvents = 'none';
                     });
-                    
-                    // 添加正确/错误样式
+
                     this.classList.add(isCorrect ? 'correct' : 'incorrect');
-                    
-                    // 根据答案正确与否设置不同的刷新延时
+
                     const delay = isCorrect ? 1000 : 2000;
                     setTimeout(() => {
                         location.reload();
                     }, delay);
-                    
+
                 } catch (error) {
                     console.error('提交答案失败:', error);
                 }
@@ -97,4 +97,5 @@
         });
     </script>
 </body>
+
 </html>
