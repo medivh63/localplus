@@ -47,8 +47,14 @@
             {{ option.content }}
         </div>
         {% endfor %}
+
     </div>
 
+    
+        <!-- 添加错误数显示 -->
+        <div class="stats-container">
+            <span class="wrong-count">错误: {{ wrong_count }}</span>
+        </div>
 
     <script>
         function nextQuestion() {
