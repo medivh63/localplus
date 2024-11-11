@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>测验完成</title>
-    <link rel="stylesheet" href="/static/main.css">
-</head>
-<body>
-    <!-- GitHub 风格的导航栏 -->
-    <header class="nav-header">
-        <div class="nav-container">
-            <a href="/" class="nav-brand">Calgary01</a>
-            <nav class="nav-links">
-                <a href="/class7" class="nav-link active">CLASS 7</a>
-                <a href="#" class="nav-link">找工作 🔥</a>
-            </nav>
-        </div>
-    </header>
+{% extends "base.html" %}
+
+{% block content %}
     <div class="completion-card">
         <h1 class="completion-header">
             🎉 完成练习！
@@ -49,5 +33,4 @@
 
         <a href="/class7/reset" class="restart-btn">重新开始</a>
     </div>
-</body>
-</html>
+{% endblock %}

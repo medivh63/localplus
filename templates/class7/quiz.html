@@ -1,24 +1,6 @@
-<!DOCTYPE html>
-<html lang="zh">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
-    <link rel="stylesheet" href="/static/main.css">
-</head>
-
-<body>
-    <header class="nav-header">
-        <div class="nav-container">
-            <a href="/" class="nav-brand">Calgary01</a>
-            <nav class="nav-links">
-                <a href="/class7" class="nav-link active">CLASS 7</a>
-                <a href="#" class="nav-link">找工作 🔥</a>
-            </nav>
-        </div>
-    </header>
-
+{% block content %}
     <div class="question">
         <h2 class="question-text">{{ question.content }}</h2>
         {% if question.images %}
@@ -102,6 +84,5 @@
             });
         });
     </script>
-</body>
 
-</html>
+{% endblock %}
