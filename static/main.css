@@ -379,7 +379,7 @@ body {
     margin-top: 0;
 }
 
-/* 修改选项容器样式 */
+/* 修改���容器样式 */
 .options {
     max-width: 900px;
     margin: 16px auto;
@@ -494,24 +494,19 @@ body {
 }
 
 .next-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    background-color: var(--color-accent-emphasis);
-    color: white;
+    background-color: #4CAF50 !important;  /* 明亮的绿色 */
+    color: white !important;
     border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
 }
 
 .next-button:hover {
-    background-color: var(--color-accent-fg);
+    background-color: #45a049 !important;  /* 鼠标悬停时的深绿色 */
 }
 
 .next-button i {
-    font-size: 14px;
+    margin-right: 5px;  /* 图标和文字之间的间距 */
 }
 
 .restart-link {
@@ -800,4 +795,25 @@ body {
     .question-image img {
         max-height: 300px;
     }
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.restart-link:hover, .next-button:hover {
+    background-color: #e0e0e0;
+}
+
+.next-button {
+    margin-left: 10px;
 }

@@ -12,10 +12,10 @@
     </div>
 
     <div class="restart-container">
-        <a href="/class7/reset" class="restart-link">
+        <a href="/class7/reset" class="restart-link button">
             <i class="fas fa-redo"></i> 重新开始 ({{ answered_count }}/{{ total_count }})
         </a>
-        <button class="next-button" onclick="nextQuestion()" style="display: none;">
+        <button class="next-button button" onclick="nextQuestion()">
             <i class="fas fa-arrow-right"></i> 下一题
         </button>
     </div>
@@ -76,13 +76,8 @@
                     if (!isCorrect) {
                         this.classList.add('incorrect');
                         this.querySelector('.option-icon').innerHTML = '<i class="fas fa-times"></i>';
-                    }
-
-                    // 显示下一题按钮
-                    document.querySelector('.next-button').style.display = 'inline-flex';
-
-                    // 只有在答对时自动进入下一题
-                    if (isCorrect) {
+                    } else {
+                        // 只有在答对时自动进入下一题
                         setTimeout(() => {
                             location.reload();
                         }, 1500);
