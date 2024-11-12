@@ -112,18 +112,45 @@ body {
 }
 
 .option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 12px 16px;
     border: 1px solid var(--color-border-default);
     border-radius: 6px;
     cursor: pointer;
     font-size: 15px;
     background-color: var(--color-canvas-default);
-    transition: border-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
-.option:hover {
-    background-color: var(--color-canvas-subtle);
-    border-color: var(--color-border-muted);
+.option-content {
+    flex: 1;
+}
+
+.option-icon {
+    width: 24px;
+    text-align: center;
+}
+
+.option.correct {
+    background-color: #dafbe1;
+    border-color: var(--color-success-fg);
+    color: var(--color-success-fg);
+}
+
+.option.incorrect {
+    background-color: #ffebe9;
+    border-color: var(--color-danger-fg);
+    color: var(--color-danger-fg);
+}
+
+.option.correct .fa-check {
+    color: var(--color-success-fg);
+}
+
+.option.incorrect .fa-times {
+    color: var(--color-danger-fg);
 }
 
 /* 完成页面样式 */
@@ -466,24 +493,40 @@ body {
 }
 
 .next-button {
-    padding: 8px 12px;
-    background-color: #4CAF50;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: var(--color-accent-emphasis);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 .next-button:hover {
-    background-color: #45a049;
+    background-color: var(--color-accent-fg);
+}
+
+.next-button i {
+    font-size: 14px;
 }
 
 .restart-link {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
+    padding: 8px 16px;
+    color: var(--color-fg-default);
     text-decoration: none;
-    color: #333;
+    border: 1px solid var(--color-border-default);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.restart-link:hover {
+    background-color: var(--color-canvas-subtle);
 }
 
 .restart-icon {
