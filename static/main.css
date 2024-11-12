@@ -131,7 +131,10 @@ body {
 
 .option-icon {
     width: 24px;
-    text-align: center;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .option.correct {
@@ -147,10 +150,12 @@ body {
 }
 
 .option.correct .fa-check {
+    font-size: 1.4em;
     color: var(--color-success-fg);
 }
 
 .option.incorrect .fa-times {
+    font-size: 1.4em;
     color: var(--color-danger-fg);
 }
 
@@ -379,7 +384,7 @@ body {
     margin-top: 0;
 }
 
-/* 修改���容器样式 */
+/* 修改容器样式 */
 .options {
     max-width: 900px;
     margin: 16px auto;
