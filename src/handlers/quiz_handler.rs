@@ -63,16 +63,16 @@ pub async fn quiz(State(state): State<AppState>, cookies: Cookies) -> impl IntoR
     context.insert("answered_count", &answered_questions.len());
     // 回答错误的题目数量
     context.insert("wrong_count", &wrong_count);
-    if answered_question_ids.len() == state.quiz_ids().len() {
-        // 渲染页面
-        return Html(TEMPLATES.render("class7/completed.html", &context).unwrap());
-    }
     // 取差集
     let quiz_ids = state
         .quiz_ids()
         .iter()
         .filter(|id| !answered_question_ids.contains(id))
         .collect::<Vec<_>>();
+    if quiz_ids.is_empty() {
+        // 渲染页面
+        return Html(TEMPLATES.render("class7/completed.html", &context).unwrap());
+    }
     // 随机取一个题目id
     let random_quiz_id = quiz_ids.choose(&mut rand::thread_rng()).unwrap();
     // 根据题目id查询题目
