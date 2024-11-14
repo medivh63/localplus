@@ -46,7 +46,7 @@ pub async fn quiz(State(state): State<AppState>, cookies: Cookies) -> impl IntoR
         None => return Html(TEMPLATES.render("404.html", &context).unwrap()),
         Some(cookie) => cookie.value().to_string(),
     };
-    // 已经回答过的题目id
+    // 已经回答过的题目
     let answered_questions = models::get_answered_all_question(state.pool(), &quiz_id)
         .await
         .unwrap();
