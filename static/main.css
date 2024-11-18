@@ -873,3 +873,38 @@ body {
         text-align: center;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .site-footer .footer-container {
+        flex-direction: column;
+        padding: 1.5rem 1rem;
+        gap: 2rem;  /* 各区块之间的间距 */
+    }
+
+    .site-footer .footer-section {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .site-footer .footer-section ul {
+        padding: 0;
+        list-style: none;
+    }
+
+    .site-footer .footer-section ul li {
+        margin: 0.8rem 0;
+    }
+
+    .site-footer .social-links {
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .site-footer .footer-bottom {
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+}
