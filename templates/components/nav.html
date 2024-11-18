@@ -59,9 +59,17 @@
         </div>
     </div>
 </nav>
-<!-- 
+
+<!-- 移动端下的空白导航栏，用于保持间距 -->
+<nav class="navbar d-md-none invisible">
+    <!-- 空白内容，保持与实际导航栏相同的高度 -->
+    <div class="container">
+        <a class="navbar-brand" href="#">&nbsp;</a>
+    </div>
+</nav>
+
 <script>
-    function updateNavbarClass() {
+    function updateNavbar() {
         const navbar = document.querySelector('.navbar');
         if (window.innerWidth < 768) {
             navbar.classList.add('fixed-top');
@@ -70,9 +78,7 @@
         }
     }
 
-    // 页面加载时执行
-    updateNavbarClass();
-    
-    // 窗口大小改变时执行
-    window.addEventListener('resize', updateNavbarClass);
-</script> -->
+    // 页面加载和窗口大小改变时执行
+    window.addEventListener('load', updateNavbar);
+    window.addEventListener('resize', updateNavbar);
+</script>
