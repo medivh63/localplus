@@ -28,7 +28,7 @@ COPY --from=builder /usr/src/app/target/release/localplus .
 # 复制templates
 COPY --from=builder /usr/src/app/templates /app/templates/
 # 复制static
-COPY --from=builder /usr/src/app/static/css/main.css /app/static/css/
+COPY --from=builder /usr/src/app/static/css/ /app/static/css/
 # 复制js
 COPY --from=builder /usr/src/app/static/js/ /app/static/js/
 
