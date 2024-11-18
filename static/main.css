@@ -806,17 +806,27 @@ body {
         flex-direction: column;
     }
 
-    .nav-link {
-        padding: 0.8rem 1rem;
-        border-bottom: 1px solid #eee;
-        text-align: left;
-        justify-content: flex-start;
+    /* 修改下拉菜单中的链接样式 */
+    .nav-links .nav-link {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;  /* 强制左对齐 */
+        width: 100% !important;
+        padding: 0.8rem 1rem !important;
+        text-align: left !important;             /* 文本左对齐 */
+        border-bottom: 1px solid var(--color-border);
     }
-
-    .nav-link i {
-        margin-right: 8px;
-        width: 20px;
-        text-align: center;
+    
+    /* 图标样式 */
+    .nav-links .nav-link i {
+        margin-right: 10px !important;  /* 图标和文字的间距 */
+        width: 20px !important;         /* 固定图标宽度 */
+        text-align: center !important;  /* 图标居中 */
+    }
+    
+    /* 最后一个项目不需要底部边框 */
+    .nav-links .nav-link:last-child {
+        border-bottom: none;
     }
 }
 
