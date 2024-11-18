@@ -897,8 +897,6 @@ body {
 
 .stats-container {
     color: var(--color-text-secondary);
-    background-color: var(--color-card-bg);
-    border: 1px solid var(--color-border);
     border-radius: 6px;
     padding: 1rem;
 }
