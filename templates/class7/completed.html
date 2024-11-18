@@ -1,75 +1,75 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="card shadow-sm">
-        <div class="card-body p-4">
-            <!-- 完成标题 -->
-            <div class="text-center mb-4">
-                <h1 class="display-4 mb-3">
-                    {% if wrong_count > 5 %}
-                        😢 没有通过考试
-                    {% else %}
-                        🎉 完成练习！
-                    {% endif %}
-                </h1>
-                <p class="text-muted small mb-3">*根据Alberta省规定，错误超过5题则考试不合格</p>
-                <div class="h3 text-primary">
-                    正确率：
-                    {% if answered_count > 0 %}
-                        {% set correct_count = answered_count - wrong_count %}
-                        {% set accuracy = correct_count * 100 / answered_count %}
-                        {{ accuracy | round(precision=2) }}%
-                    {% else %}
-                        0%
-                    {% endif %}
-                </div>
-            </div>
+<div class="container-fluid py-4 px-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-11 col-lg-10 col-xl-7">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <!-- 完成标题 -->
+                    <div class="text-center mb-4">
+                        <h1 class="display-4 mb-3">
+                            {% if wrong_count > 5 %}
+                                😢 没有通过考试
+                            {% else %}
+                                🎉 完成练习！
+                            {% endif %}
+                        </h1>
+                        <p class="text-muted small mb-3">*根据Alberta省规定，错误超过5题则考试不合格</p>
+                        <div class="h3 text-primary">
+                            正确率：
+                            {% if answered_count > 0 %}
+                                {% set correct_count = answered_count - wrong_count %}
+                                {% set accuracy = correct_count * 100 / answered_count %}
+                                {{ accuracy | round(precision=2) }}%
+                            {% else %}
+                                0%
+                            {% endif %}
+                        </div>
+                    </div>
 
-            <!-- 统计数据 -->
-            <div class="row g-4 text-center mb-4">
-                <!-- 总题数 -->
-                <div class="col-md-4">
-                    <div class="card bg-light border-0">
-                        <div class="card-body">
-                            <h5 class="card-title text-secondary mb-2">总题数</h5>
-                            <p class="card-text h3 mb-0">{{ total_count }}</p>
+                    <!-- 统计数据 -->
+                    <div class="row g-3 text-center mb-4">
+                        <!-- 总题数 -->
+                        <div class="col-12 col-md-4">
+                            <div class="card bg-light border-0 hover-card">
+                                <div class="card-body py-3">
+                                    <h5 class="card-title text-secondary mb-2">总题数</h5>
+                                    <p class="card-text h3 mb-0">{{ total_count }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 已答题数 -->
+                        <div class="col-12 col-md-4">
+                            <div class="card bg-light border-0 hover-card">
+                                <div class="card-body py-3">
+                                    <h5 class="card-title text-secondary mb-2">已答题数</h5>
+                                    <p class="card-text h3 mb-0">{{ answered_count }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 错误题数 -->
+                        <div class="col-12 col-md-4">
+                            <div class="card bg-light border-0 hover-card">
+                                <div class="card-body py-3">
+                                    <h5 class="card-title text-secondary mb-2">错误题数</h5>
+                                    <p class="card-text h3 mb-0">{{ wrong_count }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- 已答题数 -->
-                <div class="col-md-4">
-                    <div class="card bg-light border-0">
-                        <div class="card-body">
-                            <h5 class="card-title text-secondary mb-2">已答题数</h5>
-                            <p class="card-text h3 mb-0">{{ answered_count }}</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 错误题数 -->
-                <div class="col-md-4">
-                    <div class="card bg-light border-0">
-                        <div class="card-body">
-                            <h5 class="card-title text-secondary mb-2">错误题数</h5>
-                            <p class="card-text h3 mb-0">{{ wrong_count }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- 重新开始按钮 -->
-            <div class="text-center">
-                <a href="/class7/reset" class="btn btn-primary btn-lg px-5">
-                    <i class="fas fa-redo me-2"></i>重新开始
-                </a>
+                    <!-- 重新开始按钮 -->
+                    <div class="text-center">
+                        <a href="/class7/reset" class="btn btn-primary btn-lg px-5">
+                            <i class="fas fa-redo me-2"></i>重新开始
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<style>
-    
-</style>
 {% endblock %}
