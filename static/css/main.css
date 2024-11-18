@@ -54,7 +54,7 @@ body {
     .question-content.has-image::after {
         content: '';
         position: absolute;
-        right: calc(200px + 1rem); /* 图片宽度 + gap的一半 */
+        right: calc(25% + 1rem); /* 改用百分比 */
         top: 0;
         height: 100%;
         width: 1px;
@@ -97,9 +97,10 @@ body {
 
 /* 题目图片容器 */
 .question-image-container {
-    flex: 0 0 auto; /* 防止图片拉伸 */
-    width: 200px; /* 固定宽度 */
-    height: 200px; /* 固定高度 */
+    flex: 0 0 auto; /* 保持不变，防止图片拉伸 */
+    width: 100%; /* 默认宽度 */
+    max-width: 200px; /* 最大宽度限制 */
+    aspect-ratio: 1; /* 保持正方形比例 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,6 +121,7 @@ body {
     }
     
     .question-image-container {
+        max-width: 100%; /* 移动端下允许更宽 */
         width: 100%;
         margin-top: 1rem;
     }
