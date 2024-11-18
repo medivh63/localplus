@@ -5,6 +5,7 @@ use axum::{
     Json,
 };
 use rand::seq::SliceRandom;
+use serde_json::json;
 use tera::Context;
 use tower_cookies::{Cookie, Cookies};
 use uuid::Uuid;
@@ -112,7 +113,10 @@ pub async fn answer(
         created_at: chrono::Local::now().naive_utc(),
     };
     models::insert_quiz(state.pool(), &quiz).await.unwrap();
-    (StatusCode::OK, "success")
+    // 返回json格式
+    Json(json!({
+        "status": "success",
+    }))
 }
 
 /// quiz 重置测验

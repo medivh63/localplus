@@ -1,35 +1,47 @@
-// 等待 DOM 加载完成
-document.addEventListener('DOMContentLoaded', () => {
-    // 获取主题切换按钮和图标
-    const themeToggle = document.querySelector('.theme-toggle');
-    const themeIcon = themeToggle.querySelector('i');
-    
-    // 从 localStorage 获取保存的主题，默认为 light
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    
+ // 等待 DOM 加载完成
+document.addEventListener('DOMContentLoaded', function() {
     // 初始化主题
-    setTheme(savedTheme);
-    
-    // 添加点击事件监听器
-    themeToggle.addEventListener('click', () => {
-        // 获取当前主题
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        // 切换主题
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
-    });
-    
-    // 设置主题的函数
-    function setTheme(theme) {
-        // 设置 HTML 根元素的 data-theme 属性
-        document.documentElement.setAttribute('data-theme', theme);
-        // 保存主题到 localStorage
-        localStorage.setItem('theme', theme);
-        // 更新图标
-        themeIcon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
-    }
+    initializeTheme();
 });
 
-// 立即执行一次主题初始化
-const savedTheme = localStorage.getItem('theme') || 'light';
-document.documentElement.setAttribute('data-theme', savedTheme); 
+// 初始化主题设置
+function initializeTheme() {
+    // 获取主题切换按钮
+    const themeToggle = document.getElementById('theme-toggle');
+    if (!themeToggle) return;
+
+    // 获取保存的主题或使用默认主题
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    
+    // 设置初始主题
+    document.documentElement.setAttribute('data-bs-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    // 添加切换事件
+    themeToggle.addEventListener('click', toggleTheme);
+}
+
+// 切换主题
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    // 更新主题
+    document.documentElement.setAttribute('data-bs-theme', newTheme);
+    updateThemeIcon(newTheme);
+    
+    // 保存设置
+    localStorage.setItem('theme', newTheme);
+}
+
+// 更新主题图标
+function updateThemeIcon(theme) {
+    const icon = document.querySelector('#theme-toggle i');
+    if (!icon) return;
+
+    // 移除现有图标类
+    icon.classList.remove('fa-sun', 'fa-moon');
+    
+    // 添加新图标类
+    icon.classList.add(theme === 'dark' ? 'fa-sun' : 'fa-moon');
+}
