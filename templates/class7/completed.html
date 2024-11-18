@@ -7,8 +7,13 @@
             <!-- 完成标题 -->
             <div class="text-center mb-4">
                 <h1 class="display-4 mb-3">
-                    🎉 完成练习！
+                    {% if wrong_count > 5 %}
+                        😢 没有通过考试
+                    {% else %}
+                        🎉 完成练习！
+                    {% endif %}
                 </h1>
+                <p class="text-muted small mb-3">*根据Alberta省规定，错误超过5题则考试不合格</p>
                 <div class="h3 text-primary">
                     正确率：
                     {% if answered_count > 0 %}
