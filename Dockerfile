@@ -26,7 +26,7 @@ WORKDIR /app
 # 从构建阶段复制编译好的二进制文件
 COPY --from=builder /usr/src/app/target/release/localplus .
 # 复制templates
-COPY --from=builder /usr/src/app/templates /app/templates
+COPY --from=builder /usr/src/app/templates /app/templates/
 # 复制static
 COPY --from=builder /usr/src/app/static/css/main.css /app/static/css/
 # 复制js
