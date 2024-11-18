@@ -10,7 +10,7 @@
     --color-danger-fg: #cf222e;
     --color-fg-default: #24292f;
     --color-fg-muted: #57606a;
-    --color-primer-shadow-inset: inset 0 1px 0 rgba(208,215,222,0.2);
+    --color-primer-shadow-inset: inset 0 1px 0 rgba(208, 215, 222, 0.2);
     --spacing: 16px;
 }
 
@@ -32,7 +32,8 @@ body {
 }
 
 /* 容器样式 */
-.container, .completion-card {
+.container,
+.completion-card {
     max-width: 900px;
     margin: 32px auto;
     padding: 24px;
@@ -61,25 +62,29 @@ body {
 }
 
 /* 规则和信息区块 */
-.rules, .info {
+.rules,
+.info {
     margin: 16px 0;
     padding: 16px;
     background-color: var(--color-canvas-subtle);
     border-radius: 6px;
 }
 
-.rules h2, .info h2 {
+.rules h2,
+.info h2 {
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 8px;
 }
 
-.rules ul, .info ul {
+.rules ul,
+.info ul {
     padding-left: 24px;
     margin-bottom: 0;
 }
 
-.rules li, .info li {
+.rules li,
+.info li {
     margin: 4px 0;
     color: var(--color-fg-muted);
 }
@@ -193,7 +198,8 @@ body {
 }
 
 /* 按钮样式 */
-.start-btn, .restart-btn {
+.start-btn,
+.restart-btn {
     display: inline-block;
     padding: 8px 16px;
     font-size: 14px;
@@ -214,7 +220,8 @@ body {
     transition: 0.2s ease;
 }
 
-.start-btn:hover, .restart-btn:hover {
+.start-btn:hover,
+.restart-btn:hover {
     background-color: var(--color-accent-fg);
 }
 
@@ -241,7 +248,7 @@ body {
     .options {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .stats {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -376,7 +383,8 @@ body {
 }
 
 /* 修改原有的容器样式 */
-.container, .completion-card {
+.container,
+.completion-card {
     max-width: 900px;
     margin: 32px auto;
     padding: 24px;
@@ -404,10 +412,12 @@ body {
     align-items: center;
     gap: 15px;
     flex-wrap: wrap;
-    max-width: 600px;  /* 限制最大宽度 */
+    max-width: 600px;
+    /* 限制最大宽度 */
 }
 
-.restart-link, .next-button {
+.restart-link,
+.next-button {
     padding: 8px 16px;
     border-radius: 4px;
     background: #f5f5f5;
@@ -416,7 +426,8 @@ body {
     transition: all 0.3s ease;
 }
 
-.restart-link:hover, .next-button:hover {
+.restart-link:hover,
+.next-button:hover {
     background: #e9e9e9;
 }
 
@@ -455,15 +466,20 @@ body {
 
 .content-wrapper {
     display: flex;
-    gap: 2rem;  /* 设置两个div之间的间距 */
+    gap: 2rem;
+    /* 设置两个div之间的间距 */
     margin: 2rem 0;
 }
 
-.rules, .info {
-    flex: 1;  /* 让两个div平均分配空间 */
+.rules,
+.info {
+    flex: 1;
+    /* 让两个div平均分配空间 */
     padding: 1.5rem;
-    background-color: #f8f9fa;  /* 可选：添加背景色 */
-    border-radius: 8px;         /* 可选：添加圆角 */
+    background-color: #f8f9fa;
+    /* 可选：添加背景色 */
+    border-radius: 8px;
+    /* 可选：添加圆角 */
 }
 
 /* 在小屏幕上改为垂直排列 */
@@ -481,8 +497,10 @@ body {
 /* 可选：如果想让按钮更突出，可以调整按钮样式 */
 .start-btn {
     background-color: #4CAF50;
-    min-width: 200px;  /* 设置最小宽度使按钮更明显 */
-    padding: 12px 24px;  /* 增加内边距使按钮更大 */
+    min-width: 200px;
+    /* 设置最小宽度使按钮更明显 */
+    padding: 12px 24px;
+    /* 增加内边距使按钮更大 */
 }
 
 .question-image {
@@ -496,12 +514,13 @@ body {
     max-height: 400px;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     object-fit: contain;
 }
 
 .next-button {
-    background-color: #4CAF50 !important;  /* 明亮的绿色 */
+    background-color: #4CAF50 !important;
+    /* 明亮的绿色 */
     color: white !important;
     border: none;
     margin-left: 10px;
@@ -509,11 +528,13 @@ body {
 }
 
 .next-button:hover {
-    background-color: #45a049 !important;  /* 鼠标悬停时的深绿色 */
+    background-color: #45a049 !important;
+    /* 鼠标悬停时的深绿色 */
 }
 
 .next-button i {
-    margin-right: 5px;  /* 图标和文字之间的间距 */
+    margin-right: 5px;
+    /* 图标和文字之间的间距 */
 }
 
 .restart-link {
@@ -546,8 +567,9 @@ body {
         padding: 10px 20px;
         gap: 10px;
     }
-    
-    .restart-link, .next-button {
+
+    .restart-link,
+    .next-button {
         flex: 1;
         min-width: 140px;
         white-space: nowrap;
@@ -555,10 +577,11 @@ body {
 }
 
 .stats-container {
-    text-align: center;  /* 改为居中对齐 */
+    text-align: center;
+    /* 改为居中对齐 */
     margin: 15px 0;
-    padding: 0 16px;   
-    max-width: 900px;  
+    padding: 0 16px;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -581,10 +604,10 @@ body {
 }
 
 .site-footer {
-    background-color: #f8f9fa;
+    background-color: var(--color-nav-bg);
+    border-top: 1px solid var(--color-border);
     padding: 3rem 0 1rem;
     margin-top: 4rem;
-    border-top: 1px solid #e9ecef;
 }
 
 .footer-container {
@@ -597,14 +620,15 @@ body {
 }
 
 .footer-section h3 {
-    color: #333;
+    color: var(--color-text);
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .footer-section h3 i {
     margin-right: 0.5rem;
-    color: #007bff;
+    color: var(--color-primary);
 }
 
 .footer-section ul {
@@ -613,33 +637,43 @@ body {
 }
 
 .footer-section ul li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
 }
 
 .footer-section a {
-    color: #666;
+    color: var(--color-text-secondary);
     text-decoration: none;
     transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .footer-section a:hover {
-    color: #007bff;
+    color: var(--color-link);
 }
 
 .social-links {
+    display: flex;
+    gap: 1rem;
     margin-top: 1rem;
 }
 
 .social-links a {
     font-size: 1.5rem;
-    margin-right: 1rem;
+    color: var(--color-text-secondary);
 }
 
-.social-links .fa-weixin {
+.social-links a:hover {
+    color: var(--color-link);
+}
+
+/* 特定社交图标颜色 */
+.social-links .fa-weixin:hover {
     color: #07C160;
 }
 
-.social-links .fa-discord {
+.social-links .fa-discord:hover {
     color: #5865F2;
 }
 
@@ -647,193 +681,105 @@ body {
     text-align: center;
     margin-top: 2rem;
     padding-top: 1rem;
-    border-top: 1px solid #e9ecef;
-    color: #666;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
     font-size: 0.9rem;
 }
 
-/* 确保页脚始终在底部 */
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+    .site-footer {
+        padding: 2rem 0 1rem;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-section a {
+        justify-content: center;
+    }
+}
+
+/* 亮色主题（默认） */
+:root {
+    --color-bg: #ffffff;
+    --color-text: #333333;
+    --color-primary: #0366d6;
+    --color-border: #e1e4e8;
+    --color-nav-bg: #ffffff;
+    --color-card-bg: #ffffff;
+    --color-shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* 暗色主题 */
+[data-theme="dark"] {
+    --color-bg: #0d1117;
+    --color-text: #c9d1d9;
+    --color-primary: #58a6ff;
+    --color-border: #30363d;
+    --color-nav-bg: #161b22;
+    --color-card-bg: #161b22;
+    --color-shadow: rgba(255, 255, 255, 0.1);
+}
+
+/* 应用主题变量到元素 */
 body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.main-content {
-    flex: 1;
+.nav-header {
+    background-color: var(--color-nav-bg);
+    transition: background-color 0.3s ease;
 }
 
-/* 更新的 CSS 样式 */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-    background-color: transparent;
-    border: none;
-}
-
-.header {
-    text-align: center;
-    margin-bottom: 3rem;
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.header h1 {
-    font-size: 2.5rem;
-    color: #2c3e50;
-    margin-bottom: 1rem;
-}
-
-.subtitle {
-    font-size: 1.2rem;
-    color: #666;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin: 3rem auto;
-    max-width: 1200px;
-    padding: 0 1rem;
-}
-
-.feature-item {
-    text-align: center;
-    padding: 2.5rem 2rem;
-    background: var(--color-canvas-default);
-    border-radius: 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.feature-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.feature-item i {
-    font-size: 2.5rem;
-    color: #007bff;
-    margin-bottom: 1rem;
-}
-
-.feature-item h3 {
-    color: #2c3e50;
-    margin-bottom: 0.5rem;
-}
-
-.feature-item p {
-    color: #666;
-    line-height: 1.6;
-}
-
-.button-container {
-    text-align: center;
-    margin-top: 2rem;
-}
-
-.start-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: #007bff;
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 30px;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.start-btn:hover {
-    background: #0056b3;
-    transform: scale(1.05);
-}
-
-/* 响应式调整 */
-@media (max-width: 992px) {
-    .feature-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-        padding: 0 1rem;
-    }
-
-    .feature-item {
-        padding: 1.5rem 1rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .feature-grid {
-        grid-template-columns: repeat(1, 1fr);
-        max-width: 500px;
-    }
-
-    .feature-item {
-        padding: 2rem;
-    }
-}
-
-/* 问题图片容器样式 */
-.question-image {
-    margin: 20px auto;
-    text-align: center;
-    max-width: 600px;
-}
-
-.question-image img {
-    max-width: 100%;
-    max-height: 400px;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    object-fit: contain;
-}
-
-/* 响应式调整 */
-@media (max-width: 768px) {
-    .question-image {
-        max-width: 100%;
-    }
-    
-    .question-image img {
-        max-height: 300px;
-    }
-}
-
-.button {
-    display: inline-flex;
-    align-items: center;
-    padding: 8px 16px;
-    font-size: 14px;
-    border-radius: 4px;
+/* 主题切换按钮样式 */
+.theme-toggle {
+    background: none;
     border: none;
     cursor: pointer;
-    text-decoration: none;
-    background-color: #f0f0f0;
-    color: #333;
+    padding: 8px;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
 }
 
-.restart-link:hover, .next-button:hover {
-    background-color: #e0e0e0;
+.theme-toggle:hover {
+    opacity: 0.8;
 }
 
-.next-button {
-    margin-left: 10px;
+/* 导航栏右侧容器 */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* 导航栏响应式样式 */
+/* 默认隐藏汉堡菜单按钮 */
+.nav-toggle {
+    display: none;
+    /* PC端隐藏汉堡菜单 */
+}
+
+/* 移动端样式 */
 @media screen and (max-width: 768px) {
     .nav-container {
-        position: relative;
-        padding: 1rem;
+        justify-content: space-between;
     }
-    
+
     .nav-toggle {
         display: block;
+        /* 移动端显示汉堡菜单 */
         padding: 0.5em;
         background: transparent;
         border: none;
@@ -841,32 +787,32 @@ body {
         font-size: 1.5rem;
         color: var(--color-fg-default);
     }
-    
+
     .nav-links {
         display: none;
         position: absolute;
         top: 100%;
         right: 0;
         width: 200px;
-        background: var(--color-canvas-default);
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        background: var(--color-nav-bg);
+        box-shadow: 0 2px 5px var(--color-shadow);
         border-radius: 4px;
         padding: 0.5rem;
         z-index: 1000;
     }
-    
+
     .nav-links.show {
         display: flex;
         flex-direction: column;
     }
-    
+
     .nav-link {
         padding: 0.8rem 1rem;
         border-bottom: 1px solid #eee;
         text-align: left;
         justify-content: flex-start;
     }
-    
+
     .nav-link i {
         margin-right: 8px;
         width: 20px;
@@ -874,37 +820,177 @@ body {
     }
 }
 
+/* Quiz 页面样式优化 */
+.question-container {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px var(--color-shadow);
+}
+
+.question-text {
+    color: var(--color-text);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+.options {
+    display: grid;
+    gap: 1rem;
+}
+
+.option {
+    background-color: var(--color-button-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.option:hover {
+    background-color: var(--color-hover);
+}
+
+/* 选项状态样式 */
+.option.correct {
+    background-color: var(--color-success);
+    border-color: var(--color-success);
+    color: #ffffff;
+}
+
+.option.incorrect {
+    background-color: var(--color-error);
+    border-color: var(--color-error);
+    color: #ffffff;
+}
+
+.quiz-progress {
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+}
+
+.stats-container {
+    color: var(--color-text-secondary);
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+.wrong-count {
+    color: var(--color-error);
+    background-color: var(--color-button-bg);
+    border: 1px solid var(--color-border);
+}
+
+/* 导航栏基础样式 */
+.nav-header {
+    background-color: var(--color-nav-bg);
+    border-bottom: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+}
+
+.nav-brand {
+    color: var(--color-text);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-brand:hover {
+    color: var(--color-primary);
+}
+
+.nav-link {
+    color: var(--color-text) !important;
+    /* 确保颜色优先级 */
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-primary) !important;
+    background-color: var(--color-hover);
+}
+
+.nav-link.active {
+    color: var(--color-primary) !important;
+    font-weight: 600;
+}
+
+/* 主题切换按钮样式 */
+.theme-toggle {
+    color: var(--color-text);
+    transition: color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--color-primary);
+}
+
+/* 暗色模式特定样式 */
+[data-theme="dark"] {
+    --color-nav-bg: #161b22;
+    --color-text: #e6edf3;
+    /* 更亮的文本颜色 */
+    --color-text-secondary: #8b949e;
+    --color-primary: #58a6ff;
+    /* 明亮的蓝色 */
+    --color-hover: #21262d;
+    --color-border: #30363d;
+}
+
+/* 确保图标颜色正确 */
+[data-theme="dark"] .nav-link i {
+    color: var(--color-text);
+    /* 确保图标颜色与文字一致 */
+}
+
+/* 移动端样式 */
 @media screen and (max-width: 768px) {
-    .site-footer .footer-container {
-        flex-direction: column;
-        padding: 1.5rem 1rem;
-        gap: 2rem;  /* 各区块之间的间距 */
+    [data-theme="dark"] .nav-links {
+        background-color: var(--color-nav-bg);
+        border: 1px solid var(--color-border);
     }
 
-    .site-footer .footer-section {
-        width: 100%;
-        text-align: center;
-        padding: 0;
-        margin: 0;
+    [data-theme="dark"] .nav-link {
+        border-bottom: 1px solid var(--color-border);
     }
 
-    .site-footer .footer-section ul {
-        padding: 0;
-        list-style: none;
+    [data-theme="dark"] .nav-link:last-child {
+        border-bottom: none;
     }
+}
 
-    .site-footer .footer-section ul li {
-        margin: 0.8rem 0;
-    }
+/* 汉堡菜单按钮样式 */
+.nav-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5em;
+    color: var(--color-text);  /* 使用主题文本颜色 */
+    transition: color 0.3s ease;
+}
 
-    .site-footer .social-links {
-        justify-content: center;
-        margin-top: 1rem;
-    }
+.nav-toggle:hover {
+    color: var(--color-primary);  /* 悬停时使用主题主色 */
+}
 
-    .site-footer .footer-bottom {
-        text-align: center;
-        padding: 1rem;
-        font-size: 0.9rem;
-    }
+/* 暗色模式特定样式 */
+[data-theme="dark"] .nav-toggle {
+    color: var(--color-text);  /* 使用暗色模式文本颜色 */
+}
+
+[data-theme="dark"] .nav-toggle:hover {
+    color: var(--color-primary);  /* 暗色模式下悬停颜色 */
+}
+
+/* 确保图标颜色正确 */
+[data-theme="dark"] .nav-toggle i {
+    color: var(--color-text);  /* 确保图标颜色与文字一致 */
 }
