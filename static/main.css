@@ -12,6 +12,12 @@
     --color-fg-muted: #57606a;
     --color-primer-shadow-inset: inset 0 1px 0 rgba(208, 215, 222, 0.2);
     --spacing: 16px;
+    --color-option-bg: #ffffff;
+    --color-option-hover: #f6f8fa;
+    --color-option-correct: #dafbe1;
+    --color-option-incorrect: #ffebe9;
+    --color-option-correct-text: #1a7f37;
+    --color-option-incorrect-text: #cf222e;
 }
 
 /* 基础样式 */
@@ -126,8 +132,13 @@ body {
     border-radius: 6px;
     cursor: pointer;
     font-size: 15px;
-    background-color: var(--color-canvas-default);
+    background-color: transparent;
     transition: all 0.2s ease;
+    color: var(--color-fg-default);
+}
+
+.option:hover {
+    background-color: rgba(175, 184, 193, 0.2);
 }
 
 .option-content {
@@ -143,15 +154,15 @@ body {
 }
 
 .option.correct {
-    background-color: #dafbe1;
-    border-color: var(--color-success-fg);
-    color: var(--color-success-fg);
+    background-color: var(--color-option-correct) !important;
+    border-color: var(--color-success-fg) !important;
+    color: var(--color-option-correct-text) !important;
 }
 
 .option.incorrect {
-    background-color: #ffebe9;
-    border-color: var(--color-danger-fg);
-    color: var(--color-danger-fg);
+    background-color: var(--color-option-incorrect) !important;
+    border-color: var(--color-danger-fg) !important;
+    color: var(--color-option-incorrect-text) !important;
 }
 
 .option.correct .fa-check {
@@ -267,14 +278,20 @@ body {
         --color-accent-emphasis: #1f6feb;
         --color-success-fg: #3fb950;
         --color-danger-fg: #f85149;
+        --color-option-bg: #0d1117;
+        --color-option-hover: #161b22;
+        --color-option-correct: rgba(46, 160, 67, 0.15);
+        --color-option-incorrect: rgba(248, 81, 73, 0.15);
+        --color-option-correct-text: #3fb950;
+        --color-option-incorrect-text: #f85149;
     }
 
     .option.correct {
-        background-color: rgba(46, 160, 67, 0.15);
+        background-color: rgba(46, 160, 67, 0.15) !important;
     }
 
     .option.incorrect {
-        background-color: rgba(248, 81, 73, 0.15);
+        background-color: rgba(248, 81, 73, 0.15) !important;
     }
 }
 
