@@ -313,6 +313,8 @@ body {
     border-radius: 6px;
     white-space: nowrap;
     margin: 0 2px;
+    display: flex;
+    align-items: center;
 }
 
 .nav-link:hover {
@@ -821,4 +823,53 @@ body {
 
 .next-button {
     margin-left: 10px;
+}
+
+/* 导航栏响应式样式 */
+@media screen and (max-width: 768px) {
+    .nav-container {
+        position: relative;
+        padding: 1rem;
+    }
+    
+    .nav-toggle {
+        display: block;
+        padding: 0.5em;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: var(--color-fg-default);
+    }
+    
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 200px;
+        background: var(--color-canvas-default);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border-radius: 4px;
+        padding: 0.5rem;
+        z-index: 1000;
+    }
+    
+    .nav-links.show {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .nav-link {
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+        justify-content: flex-start;
+    }
+    
+    .nav-link i {
+        margin-right: 8px;
+        width: 20px;
+        text-align: center;
+    }
 }

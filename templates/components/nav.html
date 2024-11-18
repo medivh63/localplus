@@ -1,6 +1,13 @@
 <header class="nav-header">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <div class="nav-container">
         <a href="/class7" class="nav-brand">Calgary01</a>
+        
+        <!-- 使用 Font Awesome 图标的汉堡菜单按钮 -->
+        <button class="nav-toggle" aria-label="toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
         <nav class="nav-links">
             <a href="/class7" class="nav-link active">
                 <i class="fa-solid fa-car-side"></i> CLASS 7
@@ -13,4 +20,10 @@
             </a>
         </nav>
     </div>
+
+    <script>
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.toggle('show');
+});
+    </script>
 </header> 
